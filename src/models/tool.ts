@@ -8,6 +8,14 @@ export class Tool {
     this.destroyHandlers();
   }
 
+  public set color(color: string) {
+    this.context.strokeStyle = color;
+  }
+
+  public set lineWidth(number: number) {
+    this.context.lineWidth = number;
+  }
+
   private destroyHandlers() {
     this.canvas.onmouseup = null;
     this.canvas.onmousedown = null;
