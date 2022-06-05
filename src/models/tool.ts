@@ -1,3 +1,5 @@
+import { DefaultSettingsCanvas } from "./default-settings-canvas";
+
 export class Tool {
   protected canvas: HTMLCanvasElement;
   protected context: CanvasRenderingContext2D;
@@ -6,6 +8,8 @@ export class Tool {
     this.canvas = canvas;
     this.context = canvas.getContext("2d") as CanvasRenderingContext2D;
     this.destroyHandlers();
+    this.context.strokeStyle = DefaultSettingsCanvas.DEFAULT_COLOR;
+    this.context.lineWidth = DefaultSettingsCanvas.DEFAULT_LINE_WIDTH;
   }
 
   public set color(color: string) {

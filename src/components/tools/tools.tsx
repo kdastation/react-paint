@@ -1,18 +1,14 @@
 import { FC } from "react";
-import { Brush } from "../../models/brush";
-import CanvasState from "../../mobx/canvas-state";
-import ToolState from "../../mobx/tool-state";
+import { useTools } from "../../hooks/tools-hook";
 
 const Tools: FC = () => {
-  const selectBrush = () => {
-    if (CanvasState.canvas) {
-      ToolState.setTool(new Brush(CanvasState.canvas));
-    }
-  };
+  const { selectTool } = useTools();
 
   return (
-    <div>
-      <button onClick={selectBrush}>Кисть</button>
+    <div onClick={selectTool}>
+      <button value="BRUSH">Кисть</button>
+      <button value="RECT">Прямоугольник</button>
+      <button value="ERASER">Ластик</button>
     </div>
   );
 };

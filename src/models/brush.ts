@@ -1,4 +1,5 @@
 import { Tool } from "./tool";
+import { DrawService } from "../services/draw-service/draw-service";
 
 export class Brush extends Tool {
   private isMouseDown: boolean = false;
@@ -21,21 +22,22 @@ export class Brush extends Tool {
   private mouseDownHandler(e: MouseEvent) {
     this.isMouseDown = true;
     this.context?.beginPath();
-    const target = e.target as HTMLCanvasElement;
     this.context?.moveTo(
-      e.pageX - target.offsetLeft,
-      e.pageY - target.offsetTop
+      DrawService.getCursorPositionX(e),
+      DrawService.getCursorPositionY(e)
     );
   }
 
   private mouseMoveHandler(e: MouseEvent) {
     if (this.isMouseDown) {
-      const target = e.target as HTMLCanvasElement;
-      this.draw(e.pageX - target.offsetLeft, e.pageY - target.offsetTop);
+      this.draw(
+        DrawService.getCursorPositionX(e),
+        DrawService.getCursorPositionY(e)
+      );
     }
   }
 
-  private draw(x: number, y: number) {
+  protected draw(x: number, y: number) {
     this.context?.lineTo(x, y);
     this.context?.stroke();
   }
