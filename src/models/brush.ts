@@ -2,7 +2,6 @@ import { Tool } from "./tool";
 
 export class Brush extends Tool {
   private isMouseDown: boolean = false;
-  private isMouseMove: boolean = false;
 
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
